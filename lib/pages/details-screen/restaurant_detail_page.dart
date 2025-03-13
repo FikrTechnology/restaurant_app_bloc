@@ -62,7 +62,7 @@ class RestaurantDetailPage extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             itemCount: data.menus.foods.length,
                             itemBuilder: (context, index) {
-                              final food = data.menus.foods[index];
+                              // final food = data.menus.foods[index];
                               return Card(
                                 margin: EdgeInsets.zero,
                                 shape: RoundedRectangleBorder(

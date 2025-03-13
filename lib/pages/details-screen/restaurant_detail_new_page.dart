@@ -74,56 +74,9 @@ class RestaurantDetailNewPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 RestaurantDetailCardDescription(data: data),
                 const SizedBox(height: 32),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      children: [
-                        Icon(
-                          Icons.fastfood,
-                          color: Colors.red,
-                        ),
-                        SizedBox(width: 8),
-                        Text("Foods"),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    const DottedLine(
-                      dashColor: Colors.grey,
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      height: 200,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: data.menus.foods.length,
-                        itemBuilder: (context, index) {
-                          final food = data.menus.foods[index];
-                          return Card(
-                            margin: const EdgeInsets.only(right: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
-                                  child: Image.network(
-                                    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Egyptian_food_Koshary.jpg/640px-Egyptian_food_Koshary.jpg",
-                                    width: 150,
-                                    height: 150,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                RestaurantDetailCardFoodsWidget(data: data),
                 const SizedBox(height: 32),
+                RestaurantDetailCardDrinksWidget(data: data),
               ],
             ),
           ),
@@ -132,3 +85,5 @@ class RestaurantDetailNewPage extends StatelessWidget {
     );
   }
 }
+
+
