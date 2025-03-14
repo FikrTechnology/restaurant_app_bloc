@@ -38,68 +38,16 @@ class RestaurantList {
   }
 }
 
-final List<RestaurantList> restaurantList = [
-  RestaurantList(
-    id: 'rqdv5juczeskfw1e867',
-    name: 'Melting Pot',
-    description:
-        'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-    pictureId: '14',
-    city: 'Medan',
-    rating: 4.2,
-  ),
-  RestaurantList(
-    id: 's1knt6za9kkfw1e867',
-    name: 'Kafe Kita',
-    description:
-        'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-    pictureId: '25',
-    city: 'Gorontalo',
-    rating: 4.5,
-  ),
-  RestaurantList(
-    id: 'w9pga3s2tubkfw1e867',
-    name: 'Bring Your Phone Cafe',
-    description:
-        'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-    pictureId: '18',
-    city: 'Surabaya',
-    rating: 4.7,
-  ),
-  RestaurantList(
-    id: '8maika7f0jkfw1e867',
-    name: 'Kafein',
-    description:
-        'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-    pictureId: '22',
-    city: 'Aceh',
-    rating: 4.6,
-  ),
-  RestaurantList(
-    id: 'uewq1zg2zlskfw1e867',
-    name: 'Hello Kite',
-    description:
-        'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-    pictureId: '23',
-    city: 'Manado',
-    rating: 4.4,
-  ),
-  RestaurantList(
-    id: 'oldha8b0zkfw1e867',
-    name: 'Cafe Cemara',
-    description:
-        'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-    pictureId: '24',
-    city: 'Bandung',
-    rating: 4.8,
-  ),
-  RestaurantList(
-    id: '6jkyt6k7eikfw1e867',
-    name: 'Warunk Upnormal',
-    description:
-        'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-    pictureId: '19',
-    city: 'Jakarta',
-    rating: 4.9,
-  ),
-];
+class RestaurantListModel {
+  final List<RestaurantList> restaurants;
+
+  RestaurantListModel({
+    required this.restaurants,
+  });
+
+  factory RestaurantListModel.fromJson(List<dynamic> json) {
+    return RestaurantListModel(
+      restaurants: json.map((e) => RestaurantList.fromJson(e)).toList(),
+    );
+  }
+}
