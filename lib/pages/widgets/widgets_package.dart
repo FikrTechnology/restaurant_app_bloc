@@ -1,6 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:readmore/readmore.dart';
+import 'package:restaurant_app_bloc/datasource/blocs/restaurant_detail_bloc/restaurant_detail_bloc.dart';
 import 'package:restaurant_app_bloc/datasource/model/restaurant_detail.dart';
 import 'package:restaurant_app_bloc/datasource/model/restaurant_list.dart';
 import 'package:restaurant_app_bloc/package.dart';

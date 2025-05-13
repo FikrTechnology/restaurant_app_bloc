@@ -38,46 +38,46 @@ class RestaurantDetail {
       categories: List<Categories>.from(
           json['categories'].map((x) => Categories.fromJson(x))),
       menus: Menus.fromJson(json['menus']),
-      rating: json['rating'].toDouble,
+      rating: json['rating'].toDouble(),
       customerReviews: List<CustomerReviews>.from(
           json['customerReviews'].map((x) => CustomerReviews.fromJson(x))),
     );
   }
 }
 
-final RestaurantDetail restaurantDetail = RestaurantDetail(
-  id: 'rqdv5juczeskfw1e867',
-  name: 'Melting Pot',
-  description:
-      'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae. Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae. Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
-  city: 'Medan',
-  address: 'Jln. Pandeglang no 19',
-  pictureId: '14',
-  categories: [Categories(name: 'Italia'), Categories(name: 'Modern')],
-  menus: Menus(
-    foods: [
-      Foods(name: 'Paket rosemary'),
-      Foods(name: 'Toastie salmon'),
-      Foods(name: 'Toastie')
-    ],
-    drinks: [Drinks(name: 'Es krim')],
-  ),
-  rating: 4.2,
-  customerReviews: [
-    CustomerReviews(
-      name: 'Ahmad',
-      review: 'Tidak rekomendasi untuk pelajar!',
-      date: '13 November 2019',
-    ),
-    CustomerReviews(
-      name: 'Arif',
-      review: 'Sangat baik!',
-      date: '13 November 2019',
-    ),
-    CustomerReviews(
-      name: 'Dwiki',
-      review: 'Sangat baik!',
-      date: '13 November 2019',
-    ),
-  ],
-);
+// final RestaurantDetail restaurantDetail = RestaurantDetail(
+//   id: 'rqdv5juczeskfw1e867',
+//   name: 'Melting Pot',
+//   description:
+//       'Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae. Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae. Lorem ipsum dolor sit amet, at mei dolore tritani repudiandae.',
+//   city: 'Medan',
+//   address: 'Jln. Pandeglang no 19',
+//   pictureId: '14',
+//   categories: [Categories(name: 'Italia'), Categories(name: 'Modern')],
+//   menus: Menus(
+//     foods: [
+//       Foods(name: 'Paket rosemary'),
+//       Foods(name: 'Toastie salmon'),
+//       Foods(name: 'Toastie')
+//     ],
+//     drinks: [Drinks(name: 'Es krim')],
+//   ),
+//   rating: 4.2,
+//   customerReviews: [
+//     CustomerReviews(
+//       name: 'Ahmad',
+//       review: 'Tidak rekomendasi untuk pelajar!',
+//       date: '13 November 2019',
+//     ),
+//     CustomerReviews(
+//       name: 'Arif',
+//       review: 'Sangat baik!',
+//       date: '13 November 2019',
+//     ),
+//     CustomerReviews(
+//       name: 'Dwiki',
+//       review: 'Sangat baik!',
+//       date: '13 November 2019',
+//     ),
+//   ],
+// );

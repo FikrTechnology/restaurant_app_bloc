@@ -17,8 +17,11 @@ class RestaurantListCardWidget extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RestaurantDetailNewPage(
-                data: restaurantDetail,
+              builder: (context) => BlocProvider(
+                create: (context) => RestaurantDetailBloc()..add(FetchRestaurantDetailEvent(restaurant.id)),
+                child: RestaurantDetailNewPage(
+                  id: restaurant.id,
+                ),
               ),
             ),
           );
@@ -32,7 +35,7 @@ class RestaurantListCardWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Image.network(
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kelimutu_2008-08-08.jpg/800px-Kelimutu_2008-08-08.jpg",
+                  "https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}",
                   fit: BoxFit.cover,
                 ),
               ),

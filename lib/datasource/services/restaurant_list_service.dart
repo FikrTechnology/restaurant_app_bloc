@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:restaurant_app_bloc/datasource/model/api_result_model.dart';
 import 'package:restaurant_app_bloc/datasource/model/meta_model.dart';
+import 'package:restaurant_app_bloc/datasource/model/restaurant_detail.dart';
 import 'package:restaurant_app_bloc/datasource/model/restaurant_list.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,6 +21,32 @@ class RestaurantListService {
         );
         final restaurantList =
             RestaurantListModel.fromJson(data['restaurants']);
+        return ApiResult(meta: meta, data: restaurantList);
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Failed to load data');
+    }
+  }
+
+  static Future<ApiResult<MetaModel, RestaurantDetail>>
+      getRestaurantDetail(String id) async {
+    try {
+
+      final response = await http
+          .get(Uri.parse('https://restaurant-api.dicoding.dev/detail/$id'));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        final meta = MetaModel(
+          error: data['error'],
+          message: data['message']
+        );
+
+        final restaurantList =
+            RestaurantDetail.fromJson(data['restaurant']);
+            
         return ApiResult(meta: meta, data: restaurantList);
       } else {
         throw Exception('Failed to load data');
