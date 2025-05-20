@@ -88,13 +88,157 @@ class RestaurantDetailCardInfo extends StatelessWidget {
                             '${data.customerReviews.length} Reviews',
                           ),
                           const SizedBox(height: 4),
-                          const Text(
-                            'Lihat Reviews',
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: Colors.green,
-                              decoration: TextDecoration.underline,
-                              decorationColor: Colors.green,
+                          GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                  backgroundColor: Colors.white,
+                                  context: context,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(16),
+                                    ),
+                                  ),
+                                  builder: (context) {
+                                    List<CustomerReviews> reviews =
+                                        List.from(data.customerReviews);
+                                    bool showForm = false;
+
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        if (showForm) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(16),
+                                            child: ReviewInputFormWidget(
+                                              onSubmit: (newReview) {
+                                                setState(() {
+                                                  reviews.add(newReview);
+                                                  showForm = false;
+                                                });
+                                              },
+                                              onCancel: () {
+                                                setState(() {
+                                                  showForm = false;
+                                                });
+                                              },
+                                            ),
+                                          );
+                                        }
+                                        return Padding(
+                                          padding: const EdgeInsets.all(16),
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Text(
+                                                  'Customer Reviews',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 16),
+                                                ...reviews.map((review) =>
+                                                    ListTile(
+                                                      leading: const Icon(
+                                                          Icons.person),
+                                                      title: Text(review.name),
+                                                      subtitle: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(review.review),
+                                                          Text(
+                                                            review.date,
+                                                            style:
+                                                                const TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: Colors
+                                                                        .grey),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )),
+                                                const Divider(),
+                                                ElevatedButton.icon(
+                                                  icon: const Icon(
+                                                      Icons.add_comment),
+                                                  label:
+                                                      const Text('Add Review'),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.green,
+                                                    foregroundColor:
+                                                        Colors.white,
+                                                  ),
+                                                  onPressed: () {
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return AlertDialog(
+                                                          title: const Text(
+                                                              'Tambah Review'),
+                                                          content:
+                                                              SingleChildScrollView(
+                                                            child:
+                                                                ConstrainedBox(
+                                                              constraints:
+                                                                  const BoxConstraints(
+                                                                maxWidth:
+                                                                    600, // opsional, agar tidak terlalu lebar di tablet/web
+                                                              ),
+                                                              child:
+                                                                  ReviewInputFormWidget(
+                                                                onSubmit:
+                                                                    (newReview) {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop(
+                                                                          newReview);
+                                                                },
+                                                                onCancel: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          contentPadding:
+                                                              const EdgeInsets
+                                                                  .fromLTRB(24,
+                                                                  20, 24, 24),
+                                                        );
+                                                      },
+                                                    ).then((result) {
+                                                      if (result != null &&
+                                                          result
+                                                              is CustomerReviews) {
+                                                        setState(() {
+                                                          reviews.add(result);
+                                                        });
+                                                      }
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  });
+                            },
+                            child: const Text(
+                              'Lihat Reviews',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.green,
+                                decoration: TextDecoration.underline,
+                                decorationColor: Colors.green,
+                              ),
                             ),
                           ),
                         ],
